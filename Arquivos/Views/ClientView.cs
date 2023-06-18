@@ -27,10 +27,15 @@ namespace Arquivos.Views
             Console.WriteLine("3 - Exportar Clientes");
             Console.WriteLine("4 - Importar Clientes");
             int option = 0;
+            option = Convert.ToInt32(Console.ReadLine());
             switch(option) 
             {
                 case 1:
                     Insert();
+                break;
+
+                case 2:
+                    List();
                 break;
                 default:
                 
@@ -38,6 +43,26 @@ namespace Arquivos.Views
             }
         }
 
+        private void List()
+        {
+            List<Client> listagem = clientController.List();
+
+            for(int i = 0; i < listagem.Count; i++)
+            {
+                Console.WriteLine( Print( listagem[i] ) );
+            }
+
+        }
+
+        private string Print(Client client)
+        {
+            string retorno = "";
+            retorno += $"Id: {client.Id} \n";
+            retorno += $"Nome: {client.FirstName} {client.LastName} \n";
+            retorno += "-------------------------------------------";
+
+            return retorno;
+        }
         private void Insert()
         {
             Client client = new Client();
@@ -47,7 +72,7 @@ namespace Arquivos.Views
             client.FirstName = Console.ReadLine();
             
             Console.WriteLine("Informe o sobrenome: ");
-            client.FirstName = Console.ReadLine();
+            client.LastName = Console.ReadLine();
             
             Console.WriteLine("Informe o CPF: ");
             client.CPF = Console.ReadLine();
@@ -55,7 +80,12 @@ namespace Arquivos.Views
             Console.WriteLine("Informe o Email: ");
             client.Email = Console.ReadLine();
 
+            bool retorno = clientController.Insert(client);
 
+            if( retorno )
+                Console.WriteLine("Cliente inserido com sucesso!");
+            else
+                Console.WriteLine("Falha ao inserir, verifique os dados");
         }
     }
 }

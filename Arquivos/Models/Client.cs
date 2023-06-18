@@ -7,6 +7,23 @@ namespace Arquivos.Models
 {
     public class Client
     {
+        public Client(int id,
+        string? firstName,
+        string? lastName,
+        string? cPF,
+        string? email)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            CPF = cPF;
+            Email = email;
+        }
+
+        public Client()
+        {
+            
+        }
         public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
