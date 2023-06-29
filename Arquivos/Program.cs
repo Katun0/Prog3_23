@@ -1,43 +1,48 @@
 ﻿using Arquivos.Views;
+using Arquivos.Utils;
+
 /*
-    Programa para leitura e exportação de dados
-    exportação em arquivo .txt
+    Programa para leitura de dados de pessoas
+    e exportação em arquivo .txt
 */
+Bootstrapper.ChargeClients();
+
+
 int option = 0;
+
 do
 {
     Console.WriteLine("*******************************************");
     Console.WriteLine("Programa para leitura e exportação de dados");
     Console.WriteLine("*******************************************");
+    Console.WriteLine("");    
     Console.WriteLine("1 - Clientes");
     Console.WriteLine("2 - Animais");
+    Console.WriteLine("3 - Veterinários");
+    Console.WriteLine("4 - Clínica");
     Console.WriteLine("0 - Sair");
-    option = Convert.ToInt32(Console.ReadLine());
 
-
-    try
-    {
-        Convert.ToInt32(option);
-    }
-    catch (FormatException)
-    {
-        Console.WriteLine("Formato Inválido, favor tentar inserir um valor numérico");
-    }
+    option = Convert.ToInt32( Console.ReadLine() );
 
     switch(option)
     {
         case 1 :
-            Console.WriteLine("Opção clientes");
+            Console.WriteLine("Cadastro de Clientes");
             ClientView clientView = new ClientView();
-        break;
-        case 2:
-            Console.WriteLine("Opção Animais");
+            break;
+
+        case 2 :
+            Console.WriteLine("Cadastro de Animais");
             AnimalView animalView = new AnimalView();
-        break;
-    
+            break;
+        case 3:
+            Console.WriteLine("Cadastro de Veterinários");
+            //Insira o método de Cadastro
+            break;        
+        case 4:
+            Console.WriteLine("Cadastro de Clínicas");
+            //Insira o método de Cadastro
+            break;
     }
 }
-while(option != 0);
-{
-
-}
+while( option > 0 );
