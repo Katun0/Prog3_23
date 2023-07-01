@@ -11,13 +11,13 @@ namespace Arquivos.Models
         string? animalName,
         string? specie,
         string? race,
-        string? age)
+        string? color)
         {
             Id = id;
             AnimalName = animalName;
             Specie = specie;
             Race = race;
-            Age = age;
+            Color = color;
         }
 
         public Animal()
@@ -29,6 +29,6 @@ namespace Arquivos.Models
         public string? AnimalName { get; set; }
         public string? Specie { get; set; }
         public string? Race { get; set; }
-        public string? Age { get; set; }
+        public string? Color { get; set; }
     }
 }

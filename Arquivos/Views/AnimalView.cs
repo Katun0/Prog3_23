@@ -32,14 +32,18 @@ namespace Arquivos.Views
             {
                 case 1:
                     Insert();
-                break;
-
+                    break;
                 case 2:
                     List();
-                break;
-                default:
-                
-                break;
+                    Thread.Sleep(1000);
+                    break;
+                case 3:
+                    Export();
+                    break;
+                case 4:
+                    Import();
+                    break;
+
             }
         }
 
@@ -51,19 +55,20 @@ namespace Arquivos.Views
             {
                 Console.WriteLine( Print( listagem[i] ) );
             }
-
+            
         }
 
         private string Print(Animal animal)
         {
             string retorno = "";
+            retorno += "------------------------------------------- \n";
             retorno += $"Id: {animal.Id} \n";
             retorno += $"Nome: {animal.AnimalName} \n";
             retorno += $"Espécie: {animal.Specie} \n";
             retorno += $"Raça: {animal.Race} \n";
-            retorno += $"Idade: {animal.Age} \n";
+            retorno += $"Idade: {animal.Color} \n";
             retorno += "-------------------------------------------";
-
+            Thread.Sleep(1000);
             return retorno;
         }
         private void Insert()
@@ -80,8 +85,8 @@ namespace Arquivos.Views
             Console.WriteLine("Informe a raça: ");
             animal.Race = Console.ReadLine();
             
-            Console.WriteLine("Informe A idade: ");
-            animal.Age = Console.ReadLine();
+            Console.WriteLine("Informe a cor: ");
+            animal.Color = Console.ReadLine();
 
             bool retorno = animalController.Insert(animal);
 
@@ -90,5 +95,35 @@ namespace Arquivos.Views
             else
                 Console.WriteLine("Falha ao inserir, verifique os dados");
         }
+
+        private void Export()
+        {
+            if( animalController.ExportToTextFile() )            
+                Console.WriteLine("Arquivo gerado com sucesso!");            
+            else                            
+                Console.WriteLine("Oooops.");
+        }
+
+                private void Import()
+        {
+            if(animalController.ImportFromTxtFile())
+                Console.WriteLine("Dados importados com sucesso!");
+            else
+                Console.WriteLine("Ooooops.");
+        }
+
+                private void SearchByName()
+        {
+            Console.WriteLine("Pesquisar animal pelo nome.");
+            Console.WriteLine("Digite o nome:");
+            string? name = Console.ReadLine();
+
+            foreach( Animal c in 
+                animalController.SearchByName(name) )
+            {
+                Console.WriteLine( c.ToString() );
+            }
+        }
+
     }
 }
