@@ -1,32 +1,32 @@
-using Arquivos.Controllers;
-using Arquivos.Data;
-using Arquivos.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Arquivos.Data;
+using Arquivos.Controllers;
+using Arquivos.Models;
 
 namespace Arquivos.Views
 {
-    public class AnimalView
+    public class DoctorView
     {
-        private AnimalController animalController;
-        public AnimalView()
+        private DoctorController doctorController;
+        public DoctorView()
         {
-            animalController = new AnimalController();
+            doctorController = new DoctorController();
             this.Init();
         }
         public void Init()
         {
             Console.WriteLine("*********************");
-            Console.WriteLine("Cadastro de Animais");
+            Console.WriteLine("Cadastro de Doutores");
             Console.WriteLine("*********************");
             Console.WriteLine("");
-            Console.WriteLine("1 - Inserir Animais");
-            Console.WriteLine("2 - Listar Animais");
-            Console.WriteLine("3 - Exportar arquivo de texto");
-            Console.WriteLine("4 - Importar arquivo de texto");
-            Console.WriteLine("0 - Retornar para o menu principal");
+            Console.WriteLine("1 - Inserir Doutor");
+            Console.WriteLine("2 - Listar Doutores");
+            Console.WriteLine("3 - Exportar Arquivo de texto");
+            Console.WriteLine("4 - Importar Arquivo de texto");
+            Console.WriteLine("0 - Retornar ao menu principal");
             int option = 0;
             option = Convert.ToInt32(Console.ReadLine());
             switch(option) 
@@ -47,13 +47,12 @@ namespace Arquivos.Views
                 case 5:
                     SearchByName();
                     break;
-
             }
         }
 
         private void List()
         {
-            List<Animal> listagem = animalController.List();
+            List<Doctor> listagem = doctorController.List();
 
             for(int i = 0; i < listagem.Count; i++)
             {
@@ -62,47 +61,40 @@ namespace Arquivos.Views
             
         }
 
-        private string Print(Animal animal)
+        private string Print(Doctor doctor)
         {
             string retorno = "";
             retorno += "------------------------------------------- \n";
-            retorno += $"Id: {animal.Id} \n";
-            retorno += $"Nome: {animal.AnimalName} \n";
-            retorno += $"Espécie: {animal.Specie} \n";
-            retorno += $"Raça: {animal.Race} \n";
-            retorno += $"Idade: {animal.Color} \n";
+            retorno += $"Id: {doctor.Id} \n";
+            retorno += $"Nome: {doctor.Name} \n";
+            retorno += $"Especialidade: {doctor.Speciality} \n";
             retorno += "-------------------------------------------";
             Thread.Sleep(1000);
             return retorno;
         }
         private void Insert()
         {
-            Animal animal = new Animal();
-            animal.Id = animalController.GetNextID();
+            Doctor doctor = new Doctor();
+            doctor.Id = doctorController.GetNextID();
 
-            Console.WriteLine("Informe o nome do animal: ");
-            animal.AnimalName = Console.ReadLine();
+            Console.WriteLine("Informe o nome do doutor: ");
+            doctor.Name = Console.ReadLine();
             
-            Console.WriteLine("Informe a espécie: ");
-            animal.Specie = Console.ReadLine();
-            
-            Console.WriteLine("Informe a raça: ");
-            animal.Race = Console.ReadLine();
-            
-            Console.WriteLine("Informe a cor: ");
-            animal.Color = Console.ReadLine();
+            Console.WriteLine("Informe a Especialidade: ");
+            doctor.Speciality = Console.ReadLine();
+        
 
-            bool retorno = animalController.Insert(animal);
+            bool retorno = doctorController.Insert(doctor);
 
             if( retorno )
-                Console.WriteLine("Animal registrado com sucesso!");
+                Console.WriteLine("Doutor registrado com sucesso!");
             else
                 Console.WriteLine("Falha ao inserir, verifique os dados");
         }
 
         private void Export()
         {
-            if( animalController.ExportToTextFile() )            
+            if( doctorController.ExportToTextFile() )            
                 Console.WriteLine("Arquivo gerado com sucesso!");            
             else                            
                 Console.WriteLine("Oooops.");
@@ -110,7 +102,7 @@ namespace Arquivos.Views
 
                 private void Import()
         {
-            if(animalController.ImportFromTxtFile())
+            if(doctorController.ImportFromTxtFile())
                 Console.WriteLine("Dados importados com sucesso!");
             else
                 Console.WriteLine("Ooooops.");
@@ -118,16 +110,16 @@ namespace Arquivos.Views
 
                 private void SearchByName()
         {
-            Console.WriteLine("Pesquisar animal pelo nome.");
+            Console.WriteLine("Pesquisar doutor pelo nome.");
             Console.WriteLine("Digite o nome:");
             string? name = Console.ReadLine();
 
-            foreach( Animal c in 
-                animalController.SearchByName(name) )
+            foreach( Doctor c in 
+                doctorController.SearchByName(name) )
             {
                 Console.WriteLine( c.ToString() );
             }
         }
-
+   
     }
 }

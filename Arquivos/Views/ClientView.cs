@@ -26,10 +26,10 @@ namespace Arquivos.Views
             Console.WriteLine("");
             Console.WriteLine("1 - Inserir Cliente");
             Console.WriteLine("2 - Listar Clientes");
-            Console.WriteLine("3 - Exportar Clientes");
-            Console.WriteLine("4 - Importar Clientes");
+            Console.WriteLine("3 - Exportar arquivo de texto");
+            Console.WriteLine("4 - Importar arquivo de texto");
             Console.WriteLine("5 - Pesquisar Clientes");
-            Console.WriteLine("");
+            Console.WriteLine("0 - Retornar para o menu principal");
 
             int option = 0;
             option = Convert.ToInt32( Console.ReadLine() );

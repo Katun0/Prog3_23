@@ -6,7 +6,9 @@ using Arquivos.Utils;
     e exportação em arquivo .txt
 */
 Bootstrapper.ChargeClients();
-
+Bootstrapper.ChargeAnimals();
+Bootstrapper.ChargeDoctors();
+Bootstrapper.ChargeClinics();
 
 int option = 0;
 
@@ -37,11 +39,11 @@ do
             break;
         case 3:
             Console.WriteLine("Cadastro de Veterinários");
-            //Insira o método de Cadastro
+            DoctorView doctorView = new DoctorView();
             break;        
         case 4:
             Console.WriteLine("Cadastro de Clínicas");
-            //Insira o método de Cadastro
+            ClinicView clinicView = new ClinicView();
             break;
     }
 }
