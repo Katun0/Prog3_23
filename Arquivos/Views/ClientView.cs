@@ -28,7 +28,7 @@ namespace Arquivos.Views
             Console.WriteLine("2 - Listar Clientes");
             Console.WriteLine("3 - Exportar arquivo de texto");
             Console.WriteLine("4 - Importar arquivo de texto");
-            Console.WriteLine("5 - Pesquisar Clientes");
+            Console.WriteLine("5 - Pesquisar Clientes por nome");
             Console.WriteLine("0 - Retornar para o menu principal");
 
             int option = 0;
@@ -76,10 +76,11 @@ namespace Arquivos.Views
         private string Print(Client client)
         {
             string retorno = "";
+            retorno += "-------------------------------------------\n";
             retorno += $"Id: {client.Id} \n";
             retorno += $"Nome: {client.FirstName} {client.LastName} \n";
             retorno += "-------------------------------------------\n";
-
+            Thread.Sleep(1000);
             return retorno;
 
         }

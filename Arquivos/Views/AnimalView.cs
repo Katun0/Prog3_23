@@ -26,6 +26,7 @@ namespace Arquivos.Views
             Console.WriteLine("2 - Listar Animais");
             Console.WriteLine("3 - Exportar arquivo de texto");
             Console.WriteLine("4 - Importar arquivo de texto");
+            Console.WriteLine("5 - Buscar animal por nome");
             Console.WriteLine("0 - Retornar para o menu principal");
             int option = 0;
             option = Convert.ToInt32(Console.ReadLine());
@@ -36,7 +37,6 @@ namespace Arquivos.Views
                     break;
                 case 2:
                     List();
-                    Thread.Sleep(1000);
                     break;
                 case 3:
                     Export();
